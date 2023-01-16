@@ -7,7 +7,7 @@
 #IMPORT DEPENDENCIES 
 
 import pandas as pd
-import xlwings as xw
+
 import streamlit as st
 import io 
 
