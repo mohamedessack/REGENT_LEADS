@@ -59,6 +59,7 @@ else:
  st.warning("You need to upload an Excel file")
 
 with stats_container:
+  df['E-mail'].astype(str).str.lower()	
   df.drop_duplicates(subset=['E-mail','Program Version Name'],inplace = True)
   df.drop_duplicates(subset=['E-mail'], inplace= True) 
   df_noDups = df.copy()
