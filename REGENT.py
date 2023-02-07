@@ -71,7 +71,32 @@ with stats_container:
 
 
     
-
+def pivot_table_w_subtotals(df, values, indices, columns, aggfunc, fill_value):
+    '''
+    Adds tabulated subtotals to pandas pivot tables with multiple hierarchical indices.
+    
+    Args:
+    - df - dataframe used in pivot table
+    - values - values used to aggregrate
+    - indices - ordered list of indices to aggregrate by
+    - columns - columns to aggregrate by
+    - aggfunc - function used to aggregrate (np.max, np.mean, np.sum, etc)
+    - fill_value - value used to in place of empty cells
+    
+    Returns:
+    -flat table with data aggregrated and tabulated
+    
+    '''
+    listOfTable = []
+    for indexNumber in range(len(indices)):
+        n = indexNumber+1
+        table = pd.pivot_table(df,values=values,index=indices[:n],columns=columns,aggfunc=aggfunc,fill_value=fill_value).reset_index()
+        for column in indices[n:]:
+            table[column] = ''
+        listOfTable.append(table)
+    concatTable = pd.concat(listOfTable).sort_index()
+    concatTable = concatTable.set_index(keys=indices)
+    return concatTable.sort_index(axis=0,ascending=True)
 
 # In[8]:
 
@@ -210,6 +235,9 @@ pivotProgress= pd.pivot_table(df,values='Lead Name',index='Program Version Name'
 sortedPivotProgress=pivotProgress.sort_values(by=['Grand Total'],ascending= False)
 pivotProgress1= pd.pivot_table(df,values='Lead Name',index='Program Version Name',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedPivotProgress1=pivotProgress1.sort_values(by=['Lead Name'],ascending= False)
+df['month'] = pd.DatetimeIndex(df['Created On']).month
+pivotDay= pivot_table_w_subtotals(df=df,values='Lead Name',indices=['month','Created On'],columns=[],aggfunc='count',fill_value='')
+sortedPivotDay=pivotDay.sort_values(by=['Lead Name'],ascending= False)
 
 #Process10a
 todayL = '2022/09/12'
@@ -237,9 +265,11 @@ sortedpivot10c = pivot10c.sort_values(by=['Grand Total'],ascending= False)
 pivot10cA= pd.pivot_table(priorLeads,values='Lead Name',index='Program Version Name',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedpivot10cA = pivot10cA.sort_values(by=['Lead Name'],ascending= False)
 
-#Process11b
+#Process9new
 pivotnewLeads= pd.pivot_table(newLeads,values='Lead Name',index='Stage Step',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedPivotnewLeads=pivotpriorLeads.sort_values(by=['Lead Name'],ascending= False)
+sortedPivotnewLeads=pivotnewLeads.sort_values(by=['Lead Name'],ascending= False)
+pivot9c= pd.pivot_table(newLeads,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+sortedPivot9c=pivot9c.sort_values(by=['Lead Name'],ascending= False)
 newLeads['Stage Step'].replace(to_replace=['Interested information sent','Online App Pending','Request a callback','Waiting for Results','Jan 2023','Waiting for Matric Results','Firm Offer','Appointment Set','DBA Enquiry'],value='POSITIVE',inplace=True)
 newLeads['Stage Step'].replace(to_replace=['Not Interested','Already dealing with REGENT','No Finance','General Enquiry','Invalid Number','Registered Elsewhere','NSFAS','Programme not Offered','Does not Qualify','Invalid Lead','Do Not Call Student','Looking for Job','Existing RBS Student','Teaching Degree','Nursing Degree'],value='NEGATIVE',inplace=True)
 newLeads['Stage Step'].replace(to_replace=['Still in Matric','Jul-23','Jan-24','July 2024','(blank)'],value='NEUTRAL',inplace=True)
@@ -330,25 +360,26 @@ with pd.ExcelWriter(buffer,engine='openpyxl' ) as writer:
    schoolLeads.to_excel(writer, sheet_name='School Leads',index =False)
    df_cleanedRegion.to_excel(writer, sheet_name='Cleaned Region',index =False)
    pivotRegions.to_excel(writer, sheet_name='Pivot Regions',index = True,startrow=1,startcol=1)
-   sortedPivotLeadsA.to_excel(writer, sheet_name='Leads Analysis',index = True,startrow=1,startcol=1)
-   pivotLeadsDisposition.to_excel(writer, sheet_name='Leads Analysis',index = True,startrow=1,startcol=10)
-   sortedPivotProgramme.to_excel(writer, sheet_name='Programme Analysis 1',index = True,startrow=1,startcol=1)
-   sortedPivotProgramme2.to_excel(writer, sheet_name='Programme Analysis 2',index = True,startrow=1,startcol=1)
+   #sortedPivotLeadsA.to_excel(writer, sheet_name='Leads Analysis',index = True,startrow=1,startcol=1)
+   #pivotLeadsDisposition.to_excel(writer, sheet_name='Leads Analysis',index = True,startrow=1,startcol=10)
+   #sortedPivotProgramme.to_excel(writer, sheet_name='Programme Analysis 1',index = True,startrow=1,startcol=1)
+  # sortedPivotProgramme2.to_excel(writer, sheet_name='Programme Analysis 2',index = True,startrow=1,startcol=1)
+   #priorLeads.to_excel(writer, sheet_name='Leads Carried Over @11 Sep',index =False)
+   #sortedPivotpriorLeads.to_excel(writer, sheet_name='Pivot Carried Over-Reg',index = True,startrow=1,startcol=1)
+  # sortedpivotPriorLeadsDisp.to_excel(writer, sheet_name='Pivot Carried Over-Reg',index = True,startrow=1,startcol=10)
+   #sortedpivot10c.to_excel(writer, sheet_name='Pivot Carried Over-Reg & Prog',index = True,startrow=1,startcol=1)
+   #sortedpivot10cA.to_excel(writer, sheet_name='Pivot Carried Over-Reg & Prog',index = True,startrow=1,startcol=10)
+   newLeads.to_excel(writer, sheet_name='New Leads 12 Sep-Present',index =False)
+   sortedPivotnewLeads.to_excel(writer, sheet_name='Pivot New Leads',index = True,startrow=1,startcol=1)
+   sortedpivotnewLeadsDisp.to_excel(writer, sheet_name='Pivot New Leads',index = True,startrow=1,startcol=12)
+   #sortedpivot11c.to_excel(writer, sheet_name='Pivot New Carried Over-Reg & Prog',index = True,startrow=1,startcol=1)
+   #sortedpivot11cA.to_excel(writer, sheet_name='Pivot New Carried Over-Reg & Prog',index = True,startrow=1,startcol=10)
+   sortedPivot9c.to_excel(writer, sheet_name='Pivot of New Leads Per Programme',index = True,startrow=1,startcol=1)
    df_cleanedProg.to_excel(writer, sheet_name='Cleaned Progress',index =False)
    sortedPivotProgress.to_excel(writer, sheet_name='Pivot Cleaned Progress',index = True,startrow=1,startcol=1)
-   sortedPivotProgress1.to_excel(writer, sheet_name='Pivot Cleaned Progress',index = True,startrow=1,startcol=10)
-   priorLeads.to_excel(writer, sheet_name='Leads Carried Over @11 Sep',index =False)
-   sortedPivotpriorLeads.to_excel(writer, sheet_name='Pivot Carried Over-Reg',index = True,startrow=1,startcol=1)
-   sortedpivotPriorLeadsDisp.to_excel(writer, sheet_name='Pivot Carried Over-Reg',index = True,startrow=1,startcol=10)
-   sortedpivot10c.to_excel(writer, sheet_name='Pivot Carried Over-Reg & Prog',index = True,startrow=1,startcol=1)
-   sortedpivot10cA.to_excel(writer, sheet_name='Pivot Carried Over-Reg & Prog',index = True,startrow=1,startcol=10)
-   sortedPivotnewLeads.to_excel(writer, sheet_name='Pivot New Carried Over-Reg',index = True,startrow=1,startcol=1)
-   sortedpivotnewLeadsDisp.to_excel(writer, sheet_name='Pivot New Carried Over-Reg',index = True,startrow=1,startcol=10)
-   sortedpivot11c.to_excel(writer, sheet_name='Pivot New Carried Over-Reg & Prog',index = True,startrow=1,startcol=1)
-   sortedpivot11cA.to_excel(writer, sheet_name='Pivot New Carried Over-Reg & Prog',index = True,startrow=1,startcol=10)
-   newLeads.to_excel(writer, sheet_name='New Leads 12 Sep-Present',index =False)
+   sortedPivotProgress1.to_excel(writer, sheet_name='Pivot Cleaned Progress',index = True,startrow=1,startcol=12)
+   sortedPivotDay.to_excel(writer, sheet_name='Pivot New Leads Day on Day',index = True,startrow=1,startcol=1)
    OrganicLeads.to_excel(writer, sheet_name='Overall Organic',index =False)
-   OverallPaid.to_excel(writer, sheet_name='Overall Paid',index =False)
    dfWalk.to_excel(writer, sheet_name='Walk-in',index =False)
    sortedpivotwalk.to_excel(writer, sheet_name='Pivot Walk-In',index = True,startrow=1,startcol=1)
    dfCall.to_excel(writer, sheet_name='Calls',index =False)
@@ -357,6 +388,7 @@ with pd.ExcelWriter(buffer,engine='openpyxl' ) as writer:
    sortedpivotlive.to_excel(writer, sheet_name='Pivot Jivo Org',index = True,startrow=1,startcol=1)
    CRMOrg.to_excel(writer, sheet_name='CRM Org',index =False)
    sortedpivotCRM.to_excel(writer, sheet_name='Pivot CRM Org',index = True,startrow=1,startcol=1)
+   OverallPaid.to_excel(writer, sheet_name='Overall Paid',index =False)
    dfJivo.to_excel(writer, sheet_name=' Paid Jivo',index =False)
    sortedpivotJivo.to_excel(writer, sheet_name='Pivot Paid Jivo',index = True,startrow=1,startcol=1)
    CRMPaid.to_excel(writer, sheet_name=' CRM Paid',index =False)
