@@ -276,7 +276,7 @@ sortedPivotProgress=pivotProgress.sort_values(by=['Grand Total'],ascending= Fals
 pivotProgress1= pd.pivot_table(df,values='Lead Name',index='Program Version Name',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedPivotProgress1=pivotProgress1.sort_values(by=['Lead Name'],ascending= False)
 df['MM-DD'] = df['Created On'].dt.strftime('%m-%d')
-df['month'] = df['Created On'].dt.month_name(locale='English')
+df['month'] = df['Created On'].dt.month_name
 pivotDay= pivot_table_w_subtotals(df=df,values='Lead Name',indices=['month','MM-DD'],columns=[],aggfunc='count',fill_value='')
 sortedPivotDay=pivotDay.sort_values(by=['Lead Name'],ascending= False)
 
