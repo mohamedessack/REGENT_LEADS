@@ -278,7 +278,7 @@ sortedPivotProgress1=pivotProgress1.sort_values(by=['Lead Name'],ascending= Fals
 df['MM-DD'] = df['Created On'].dt.strftime('%m-%d')
 df['month'] = df['Created On'].dt.month_name
 pivotDay= pivot_table_w_subtotals(df=df,values='Lead Name',indices=['month','MM-DD'],columns=[],aggfunc='count',fill_value='')
-sortedPivotDay=pivotDay.sort_values(by=['Lead Name'],ascending= False)
+#sortedPivotDay=pivotDay.sort_values(by=['Lead Name'],ascending= False)
 
 #Process11c
 pivot11c= pd.pivot_table(newLeads,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
@@ -381,7 +381,7 @@ with pd.ExcelWriter(buffer,engine='openpyxl' ) as writer:
    df_cleanedProg.to_excel(writer, sheet_name='Cleaned Progress',index =False)
    sortedPivotProgress.to_excel(writer, sheet_name='Pivot Cleaned Progress',index = True,startrow=1,startcol=1)
    sortedPivotProgress1.to_excel(writer, sheet_name='Pivot Cleaned Progress',index = True,startrow=1,startcol=12)
-   sortedPivotDay.to_excel(writer, sheet_name='Pivot New Leads Day on Day',index = True,startrow=1,startcol=1)
+   PivotDay.to_excel(writer, sheet_name='Pivot New Leads Day on Day',index = True,startrow=1,startcol=1)
    OrganicLeads.to_excel(writer, sheet_name='Overall Organic',index =False)
    dfWalk.to_excel(writer, sheet_name='Walk-in',index =False)
    sortedpivotwalk.to_excel(writer, sheet_name='Pivot Walk-In',index = True,startrow=1,startcol=1)
