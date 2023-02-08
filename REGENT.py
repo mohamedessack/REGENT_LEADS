@@ -222,22 +222,7 @@ sortedPivotProgramme=pivotProgramme.sort_values(by=['Lead Name'],ascending= Fals
 pivotProgramme2= pd.pivot_table(df,values='Lead Name',index='Program Version Name', columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedPivotProgramme2=pivotProgramme2.sort_values(by=['Grand Total'],ascending= False)
 
-#Process9a
-df['Program Version Name'].replace(to_replace=['Bachelor of Commerce in Law','Bachelor of Commerce','Bachelor of Business Administration','Bachelor of Commerce in Supply Chain Management','Bachelor of Public Administration','Bachelor of Commerce in Human Resource Management','Bachelor of Commerce in Accounting','Bachelor of Commerce in Retail Management'],value='DEGREE',inplace=True)
-df['Program Version Name'].replace(to_replace=['Higher Certificate in Healthcare Services Management','Higher Certificate in Business Management','Higher Certificate in Supply Chain Management','Higher Certificate in Human Resource Management','Higher Certificate in Accounting','Higher Certificate in Marketing Management','Higher Certificate in Entrepreneurship','Higher Certificate in Retail Management','Higher Certificate in Islamic Finance, Banking and Law','Higher Certificate in Management for Estate Agents'], value='HC',inplace=True)
-df['Program Version Name'].replace(to_replace=['Advanced Diploma in Management','Advanced Diploma in Financial Management','Diploma in Public Relations Management','Diploma in Financial Management'],value='DIPLOMA',inplace=True)
-df['Program Version Name'].replace(to_replace=['Postgraduate Diploma in Supply Chain Management','Postgraduate Diploma in Project Management','Postgraduate Diploma in Management','Postgraduate Diploma in Educational Management and Leadership','Postgraduate Diploma in Digital Marketing','Postgraduate Diploma in Islamic Finance and Banking','Postgraduate Diploma in Accounting','Bachelor of Commerce Honours','Bachelor of Commerce Honours in Human Resource Management'],value='PG/H',inplace=True)
-df['Program Version Name'].replace(to_replace=['Master of Business Administration','Master of Business Administration in Healthcare Management'],value='MBA',inplace=True)
-df['Program Version Name'].replace(to_replace=['Doctor of Business Administration'],value= 'DBA',inplace=True)
-df['Program Version Name'].replace(to_replace=['(blank)'],value='BLANKS',inplace=True)
-df_cleanedProg= df.copy()
-pivotProgress= pd.pivot_table(df,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedPivotProgress=pivotProgress.sort_values(by=['Grand Total'],ascending= False)
-pivotProgress1= pd.pivot_table(df,values='Lead Name',index='Program Version Name',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedPivotProgress1=pivotProgress1.sort_values(by=['Lead Name'],ascending= False)
-df['month'] = pd.DatetimeIndex(df['Created On']).month
-pivotDay= pivot_table_w_subtotals(df=df,values='Lead Name',indices=['month','Created On'],columns=[],aggfunc='count',fill_value='')
-sortedPivotDay=pivotDay.sort_values(by=['Lead Name'],ascending= False)
+
 
 #Process10a
 todayL = '2022/09/12'
@@ -276,6 +261,25 @@ newLeads['Stage Step'].replace(to_replace=['Still in Matric','Jul-23','Jan-24','
 newLeads['Stage Step'].replace(to_replace=['No Answer','Voicemail'],value='NOT CONTACTABLE',inplace=True)
 pivotnewLeadsDisp= pd.pivot_table(newLeads,values='Lead Name',index='Stage Step',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedpivotnewLeadsDisp=pivotPriorLeadsDisp.sort_values(by=['Lead Name'],ascending= False)
+
+#Process9a
+df['Program Version Name'].replace(to_replace=['Bachelor of Commerce in Law','Bachelor of Commerce','Bachelor of Business Administration','Bachelor of Commerce in Supply Chain Management','Bachelor of Public Administration','Bachelor of Commerce in Human Resource Management','Bachelor of Commerce in Accounting','Bachelor of Commerce in Retail Management'],value='DEGREE',inplace=True)
+df['Program Version Name'].replace(to_replace=['Higher Certificate in Healthcare Services Management','Higher Certificate in Business Management','Higher Certificate in Supply Chain Management','Higher Certificate in Human Resource Management','Higher Certificate in Accounting','Higher Certificate in Marketing Management','Higher Certificate in Entrepreneurship','Higher Certificate in Retail Management','Higher Certificate in Islamic Finance, Banking and Law','Higher Certificate in Management for Estate Agents'], value='HC',inplace=True)
+df['Program Version Name'].replace(to_replace=['Advanced Diploma in Management','Advanced Diploma in Financial Management','Diploma in Public Relations Management','Diploma in Financial Management'],value='DIPLOMA',inplace=True)
+df['Program Version Name'].replace(to_replace=['Postgraduate Diploma in Supply Chain Management','Postgraduate Diploma in Project Management','Postgraduate Diploma in Management','Postgraduate Diploma in Educational Management and Leadership','Postgraduate Diploma in Digital Marketing','Postgraduate Diploma in Islamic Finance and Banking','Postgraduate Diploma in Accounting','Bachelor of Commerce Honours','Bachelor of Commerce Honours in Human Resource Management'],value='PG/H',inplace=True)
+df['Program Version Name'].replace(to_replace=['Master of Business Administration','Master of Business Administration in Healthcare Management'],value='MBA',inplace=True)
+df['Program Version Name'].replace(to_replace=['Doctor of Business Administration'],value= 'DBA',inplace=True)
+df['Program Version Name'].replace(to_replace=['(blank)'],value='BLANKS',inplace=True)
+df_cleanedProg= df.copy()
+pivotProgress= pd.pivot_table(df,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+sortedPivotProgress=pivotProgress.sort_values(by=['Grand Total'],ascending= False)
+pivotProgress1= pd.pivot_table(df,values='Lead Name',index='Program Version Name',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+sortedPivotProgress1=pivotProgress1.sort_values(by=['Lead Name'],ascending= False)
+df['Created On'] = pd.Datetime(df['Created On'])
+df['MM-DD'] = df['Created On'].dt.strftime('%m-%d')
+df['month'] = df['Created On'].dt.month_name(locale='English')
+pivotDay= pivot_table_w_subtotals(df=df,values='Lead Name',indices=['month','MM-DD'],columns=[],aggfunc='count',fill_value='')
+sortedPivotDay=pivotDay.sort_values(by=['Lead Name'],ascending= False)
 
 #Process11c
 pivot11c= pd.pivot_table(newLeads,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
