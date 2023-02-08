@@ -382,7 +382,7 @@ with pd.ExcelWriter(buffer,engine='openpyxl' ) as writer:
    df_cleanedProg.to_excel(writer, sheet_name='Cleaned Progress',index =False)
    sortedPivotProgress.to_excel(writer, sheet_name='Pivot Cleaned Progress',index = True,startrow=1,startcol=1)
    sortedPivotProgress1.to_excel(writer, sheet_name='Pivot Cleaned Progress',index = True,startrow=1,startcol=12)
-   PivotDay.to_excel(writer, sheet_name='Pivot New Leads Day on Day',index = True,startrow=1,startcol=1)
+   pivotDay.to_excel(writer, sheet_name='Pivot New Leads Day on Day',index = True,startrow=1,startcol=1)
    OrganicLeads.to_excel(writer, sheet_name='Overall Organic',index =False)
    dfWalk.to_excel(writer, sheet_name='Walk-in',index =False)
    sortedpivotwalk.to_excel(writer, sheet_name='Pivot Walk-In',index = True,startrow=1,startcol=1)
