@@ -354,7 +354,7 @@ sortedpivotCRMPaid = pivotCRMPaid.sort_values(by=['Grand Total'],ascending= Fals
 
 
 
-with pd.ExcelWriter(buffer,engine='openpyxl' ) as writer:  
+with pd.ExcelWriter(buffer,engine='openpyxl', mode= a) as writer:  
    df_noDups.to_excel(writer, sheet_name='NoDups',index=False)
    df_noJunk.to_excel(writer, sheet_name='No Junk',index =False)
    NegativeLeads.to_excel(writer, sheet_name='Negative Leads_No Progress',index =False)
@@ -409,7 +409,7 @@ with pd.ExcelWriter(buffer,engine='openpyxl' ) as writer:
 
 
 
-writer.save()
+writer.close()
 
 st.download_button(
     label = "Download Processed Excel File",
