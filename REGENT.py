@@ -102,10 +102,10 @@ def pivot_table_w_subtotals(df, values, indices, columns, aggfunc, fill_value):
 
 
 # delete all rows with column ' [Lead Name]'' contains 'TEST/SHAKEEL/ANTHOLOGY/YASTEEL'
-pattern= 'test|shakeel|anthology|yasteel'
+#pattern= 'test|shakeel|anthology|yasteel'
 
-df.drop(df[df['Lead Name'].str.contains(pattern, case= False,na=False)].index,inplace=True)
-df.drop(df[df['E-mail'].str.contains(pattern, case= False,na=False)].index,inplace=True)
+#df.drop(df[df['Lead Name'].str.contains(pattern, case= False,na=False)].index,inplace=True)
+#df.drop(df[df['E-mail'].str.contains(pattern, case= False,na=False)].index,inplace=True)
 
 mask= 'puleng|thokozani'
 df.drop(df[df['Owner'].str.contains(mask, case= False,na=False)].index,inplace=True)
