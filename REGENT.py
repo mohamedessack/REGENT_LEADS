@@ -274,9 +274,9 @@ df['Program Version Name'].replace(to_replace=['(blank)'],value='BLANKS',inplace
 df_cleanedProg= df.copy()
 pivotProgress= pd.pivot_table(df,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 name_order = ['DEGREE','HC','DIPLOMA','PG/H','MBA','DBA','BLANKS']
-sortedPivotProgress=pivotProgress.loc[name_order]
+sortedPivotProgress= pivotProgress.loc[pivotProgress.index.isin(name_order)]
 pivotProgress1= pd.pivot_table(df,values='Lead Name',index='Program Version Name',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedPivotProgress1=pivotProgress1.loc[name_order]
+sortedPivotProgress1=pivotProgress1.loc[pivotProgress1.index.isin(name_order)]
 df['MM-DD'] = df['Created On'].dt.strftime('%Y/%m/%d')
 df['month'] = df['Created On'].dt.month_name()
 #pivotDay= pd.pivot_table(df,values='Lead Name',index=['month','MM-DD'],aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
@@ -436,7 +436,7 @@ OrganicSeg= pd.DataFrame(OrganicLeads)
 dfWalk=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Walkin,case=False,na=False)]
 OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Walkin,case=False,na=False)].index,inplace=True)
 pivotwalk= pd.pivot_table(dfWalk,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotwalk = pivotwalk.loc[name_order]
+sortedpivotwalk =  pivotwalk.loc[pivotwalk.index.isin(name_order)]
 
 #Process14
 
@@ -444,7 +444,7 @@ Call='Inbound Call'
 dfCall=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Call,case=False,na=False)]
 OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Call,case=False,na=False)].index,inplace=True)
 pivotcall= pd.pivot_table(dfCall,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotcall = pivotcall.loc[name_order]
+sortedpivotcall =  pivotcall.loc[pivotcall.index.isin(name_order)]
 
 #Process15
 Live= 'Live Chat'
@@ -577,9 +577,9 @@ OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,cas
 dflivefinal= dfliveappend.append(dflive2, ignore_index = True)
 CRMOrg = OrganicSeg.copy() 
 pivotlive= pd.pivot_table(dflivefinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotlive = pivotlive.loc[name_order]
+sortedpivotlive =  pivotlive.loc[pivotlive.index.isin(name_order)]
 pivotCRM= pd.pivot_table(CRMOrg,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotCRM = pivotCRM.loc[name_order]
+sortedpivotCRM =  pivotCRM.loc[pivotCRM.index.isin(name_order)]
 
 
 #PROCESS18
@@ -599,12 +599,12 @@ PaidSeg.drop(PaidSeg[PaidSeg['Method of contact'].str.contains(Live,case=False,n
 dfJivofinal= dfJivo.append(dfJivo2, ignore_index = True)
 CRMPaid=PaidSeg.copy()
 pivotJivo= pd.pivot_table(dfJivo,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotJivo = pivotJivo.loc[name_order]
+sortedpivotJivo = pivotJivo.loc[pivotJivo.index.isin(name_order)]
 
 
 #Process19
 pivotCRMPaid= pd.pivot_table(CRMPaid,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotCRMPaid = pivotCRMPaid.loc[name_order]
+sortedpivotCRMPaid =  pivotCRMPaid.loc[pivotCRMPaid.index.isin(name_order)]
 
 
 
