@@ -273,7 +273,7 @@ df['Program Version Name'].replace(to_replace=['Doctor of Business Administratio
 df['Program Version Name'].replace(to_replace=['(blank)'],value='BLANKS',inplace=True)
 df_cleanedProg= df.copy()
 pivotProgress= pd.pivot_table(df,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-name_order = ['DEGREE','HC','DIPLOMA','PG/H','MBA','DBA','(blank)']
+name_order = ['DEGREE','HC','DIPLOMA','PG/H','MBA','DBA','BLANKS']
 sortedPivotProgress=pivotProgress.loc[name_order]
 pivotProgress1= pd.pivot_table(df,values='Lead Name',index='Program Version Name',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedPivotProgress1=pivotProgress1.loc[name_order]
