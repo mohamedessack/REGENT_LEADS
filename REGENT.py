@@ -576,8 +576,8 @@ dflive2=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,
 OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg.loc[OrganicSeg['UTM Source'].isin(source)]].index,inplace=True)
 #dflivefinal= dfliveappend.append(dflive2, ignore_index = True)
 CRMOrg = OrganicSeg.copy() 
-pivotlive= pd.pivot_table(dflivefinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotlive =  pivotlive.loc[pivotlive.index.isin(name_order)]
+#pivotlive= pd.pivot_table(dflivefinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+#sortedpivotlive =  pivotlive.loc[pivotlive.index.isin(name_order)]
 pivotCRM= pd.pivot_table(CRMOrg,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedpivotCRM =  pivotCRM.loc[pivotCRM.index.isin(name_order)]
 
