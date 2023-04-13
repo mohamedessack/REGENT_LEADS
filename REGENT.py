@@ -574,7 +574,7 @@ source= 'Facebook',
 'https://regent.ac.za/programmes/postgraduate/'
 dflive2=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg.loc[OrganicSeg['UTM Source'].isin(source)]]
 OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg.loc[OrganicSeg['UTM Source'].isin(source)]].index,inplace=True)
-dflivefinal= dfliveappend.append(dflive2, ignore_index = True)
+#dflivefinal= dfliveappend.append(dflive2, ignore_index = True)
 CRMOrg = OrganicSeg.copy() 
 pivotlive= pd.pivot_table(dflivefinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedpivotlive =  pivotlive.loc[pivotlive.index.isin(name_order)]
@@ -647,7 +647,7 @@ with pd.ExcelWriter(buffer,engine='openpyxl') as writer:
    sortedpivotwalk.to_excel(writer, sheet_name='Pivot Walk-In',index = True,startrow=1,startcol=1)
    dfCall.to_excel(writer, sheet_name='Calls',index =False)
    sortedpivotcall.to_excel(writer, sheet_name='Pivot Calls',index = True,startrow=1,startcol=1)
-   dflivefinal.to_excel(writer, sheet_name='Jivo Org',index =False)
+   #dflivefinal.to_excel(writer, sheet_name='Jivo Org',index =False)
    sortedpivotlive.to_excel(writer, sheet_name='Pivot Jivo Org',index = True,startrow=1,startcol=1)
    CRMOrg.to_excel(writer, sheet_name='CRM Org',index =False)
    sortedpivotCRM.to_excel(writer, sheet_name='Pivot CRM Org',index = True,startrow=1,startcol=1)
