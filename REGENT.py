@@ -578,8 +578,8 @@ OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,cas
 CRMOrg = OrganicSeg.copy() 
 #pivotlive= pd.pivot_table(dflivefinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 #sortedpivotlive =  pivotlive.loc[pivotlive.index.isin(name_order)]
-pivotCRM= pd.pivot_table(CRMOrg,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotCRM =  pivotCRM.loc[pivotCRM.index.isin(name_order)]
+#pivotCRM= pd.pivot_table(CRMOrg,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+#sortedpivotCRM =  pivotCRM.loc[pivotCRM.index.isin(name_order)]
 
 
 #PROCESS18
