@@ -598,13 +598,13 @@ dfJivo2=PaidSeg[PaidSeg['Method of contact'].str.contains(Live,case=False,na=Fal
 PaidSeg.drop(PaidSeg[PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(utmCampaign, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(utmMedium, case= False,na=False) & PaidSeg['UTM Source'].str.contains(utmpaidsource, case= False,na=False)].index,inplace=True)
 dfJivofinal= dfJivo.append(dfJivo2, ignore_index = True)
 CRMPaid=PaidSeg.copy()
-pivotJivo= pd.pivot_table(dfJivo,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotJivo = pivotJivo.loc[pivotJivo.index.isin(name_order)]
+#pivotJivo= pd.pivot_table(dfJivo,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+#sortedpivotJivo = pivotJivo.loc[pivotJivo.index.isin(name_order)]
 
 
 #Process19
-pivotCRMPaid= pd.pivot_table(CRMPaid,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotCRMPaid =  pivotCRMPaid.loc[pivotCRMPaid.index.isin(name_order)]
+#pivotCRMPaid= pd.pivot_table(CRMPaid,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+#sortedpivotCRMPaid =  pivotCRMPaid.loc[pivotCRMPaid.index.isin(name_order)]
 
 
 
