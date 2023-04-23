@@ -650,7 +650,7 @@ with pd.ExcelWriter(buffer,engine='openpyxl') as writer:
    #dflivefinal.to_excel(writer, sheet_name='Jivo Org',index =False)
   # sortedpivotlive.to_excel(writer, sheet_name='Pivot Jivo Org',index = True,startrow=1,startcol=1)
    #CRMOrg.to_excel(writer, sheet_name='CRM Org',index =False)
-   s#ortedpivotCRM.to_excel(writer, sheet_name='Pivot CRM Org',index = True,startrow=1,startcol=1)
+   #sortedpivotCRM.to_excel(writer, sheet_name='Pivot CRM Org',index = True,startrow=1,startcol=1)
    #OverallPaid.to_excel(writer, sheet_name='Overall Paid',index =False)
    #dfJivofinal.to_excel(writer, sheet_name=' Paid Jivo',index =False)
    #sortedpivotJivo.to_excel(writer, sheet_name='Pivot Paid Jivo',index = True,startrow=1,startcol=1)
