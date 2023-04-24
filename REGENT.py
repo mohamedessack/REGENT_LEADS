@@ -448,163 +448,34 @@ sortedpivotcall =  pivotcall.loc[pivotcall.index.isin(name_order)]
 
 #Process15
 Live= 'Live Chat'
-
-UTMSource= 'campaign=gmb-jhb|source=google|medium=organic|content=website-link',
-'campaign=(organic)|source=Google|medium=search',
-'campaign=(direct)|source=(direct)',
-'campaign=Canned_incomplete|source=CRM|medium=email',
-'campaign=gmb-jhb|source=google|medium=organic|content=',
-'campaign=Canned_enquiry-new|source=CRM|medium=email',
-'campaign=(organic)|source=Bing|medium=search',
-'campaign=(referral)|source=www.icancpd.net|medium=referral|content=/',
-'campaign=gmb-ongwe|source=google|medium=organic|content=website-link',
-'campaign=(organic)|source=Google|medium=searchcampaign=(organic)|source=Google|medium=search',
-'campaign=SCM_articulation|source=Facebook|medium=post',
-'campaign=HC_Jan23_Offer|source=Email|medium=email',
-'campaign=Enquiries-canned|source=CRM|medium=email',
-'campaign=gmb-cpt|source=google|medium=organic|content=website-link',
-'campaign=(referral)|source=search-dra.dt.dbankcloud.com|medium=referral|content=/',
-'campaign=(organic)|source=Facebook|medium=social',
-'campaign=(referral)|source=southafricaportal.com|medium=referral|content=/',
-'campaign=ITT_launch|source=Insta|medium=post',
-'campaign=(referral)|source=en.m.wikipedia.org|medium=referral|content=/',
-'campaign=Jivo_Remarketing|source=Email|medium=email',
-'campaign=(referral)|source=m.trendads.co|medium=referral|content=/search/?search_term=regent business school&brand=uncategorized',
-'campaign=(referral)|source=find-mba.com|medium=referral|content=/',
-'campaign=gmb-pta|source=google|medium=organic|content=website-link',
-'campaign=Post|source=Facebook|medium=Social',
-
-dflive= OrganicSeg[OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) &  OrganicSeg.loc[OrganicSeg['UTM Source'].isin(UTMSource)]]
-OrganicSeg.drop(OrganicSeg[OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg.loc[OrganicSeg['UTM Source'].isin(UTMSource)]].index,inplace=True)
-dflive1=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Source'].str.contains(validation, case= False,na=False)]
-OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Source'].str.contains(validation, case= False,na=False)].index,inplace=True)
-dfliveappend= dflive.append(dflive1, ignore_index = True)
-source= 'Facebook',
-'https://regent.ac.za/programme/postgraduate-diploma-in-accounting',
-'https://regent.ac.za/',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-supply-chain-management-regent',
-'https://regent.ac.za/programme/postgraduate-diploma-in-project-management',
-'https://regent.ac.za/my-account',
-'https://regent.ac.za/programmes/postgraduate',
-'https://regent.ac.za/programme/bachelor-of-business-administration-regent',
-'https://regent.ac.za/programme/postgraduate-diploma-in-digital-marketing',
-'https://regent.ac.za/logins',
-'https://regent.ac.za/programme/advanced-diploma-in-management',
-'https://regent.ac.za/programme/diploma-in-public-relations-management',
-'https://regent.ac.za/programme/advanced-diploma-in-financial-management',
-'https://regent.ac.za/programmes',
-'https://regent.ac.za/apply-online?utm_source=CRM&utm_medium=email&utm_campaign=Canned_incomplete',
-'https://regent.ac.za/programme/postgraduate-diploma-in-supply-chain-management',
-'https://regent.ac.za/contact-us/learning-centres',
-'https://regent.ac.za/contact-us/thank-you-qualifying',
-'https://regent.ac.za/?utm_source=google&utm_medium=organic&utm_campaign=gmb-jhb&utm_content=website-link',
-'https://regent.ac.za/apply-online',
-'https://regent.ac.za/apply',
-'https://regent.ac.za/programme/higher-certificate-in-health-care-services-management',
-'https://regent.ac.za/programme/postgraduate-diploma-in-islamic-finance-and-banking',
-'https://regent.ac.za/campus-news/higher-certificate-versus-diploma-versus-degree-help',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-human-resource-management',
-'https://regent.ac.za/programme/master-of-business-administration-in-healthcare-management',
-'https://regent.ac.za/programme/higher-certificate-in-human-resource-management',
-'https://regent.ac.za/?utm_source=google&utm_medium=organic&utm_campaign=gmb-cpt&utm_content=website-link',
-'https://regent.ac.za/degrees/12-things-you-can-do-with-your-bcom-degree',
-'https://regent.ac.za/programmes/undergraduate/diplomas',
-'https://regent.ac.za/programmes/short-learning-programmes',
-'https://regent.ac.za/about-us',
-'https://regent.ac.za/programmes/undergraduate/degrees',
-'https://regent.ac.za/programmes?utm_source=CRM&utm_medium=email&utm_campaign=Enquiries-canned',
-'https://regent.ac.za/programme/postgraduate-diploma-in-accounting-access-programme',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-law',
-'https://regent.ac.za/programme/bachelor-of-commerce-honours',
-'https://regent.ac.za/programmes/postgraduate/postgraduate-diplomas',
-'https://regent.ac.za/programme/higher-certificate-in-business-management',
-'https://regent.ac.za/vacancies',
-'https://regent.ac.za/retail-management-development-programme-application',
-'https://regent.ac.za/programme/mba-master-of-business-administration',
-'https://regent.ac.za/programme/bachelor-of-public-administration',
-'https://regent.ac.za/programme/bachelor-of-commerce',
-'https://regent.ac.za/contact-us',
-'https://regent.ac.za/programmes/undergraduate',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-accounting',
-'https://regent.ac.za/programme/postgraduate-diploma-in-management',
-'https://regent.ac.za/programme/higher-certificate-in-supply-chain-management',
-'https://regent.ac.za/programme/higher-certificate-in-accounting',
-'https://regent.ac.za/programme/higher-certificate-in-entrepreneurship',
-'https://regent.ac.za/events',
-'https://regent.ac.za/programmes/undergraduate/higher-certificates',
-'https://regent.ac.za/about-us/why-choose-regent',
-'https://regent.ac.za/programmes/postgraduate/honours',
-'https://regent.ac.za/blog/a-21st-century-approach-to-human-resource-management',
-'https://regent.ac.za/programme/diploma-in-financial-management',
-'https://regent.ac.za/about-us/student-experience',
-'https://regent.ac.za/category/distance-learning',
-'https://regent.ac.za/programme/master-of-business-administration',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-retail-management',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-human-resource-management-honours',
-'https://regent.ac.za/category/higher-certificates',
-'https://regent.ac.za/programme/e-commerce-starting-your-online-business',
-'https://regent.ac.za/?s=Honors+project+management',
-'https://regent.ac.za/programmes/undergraduate/advanced-diplomas',
-'https://regent.ac.za/students/accessing-regentonline',
-'https://regent.ac.za/programme/doctor-of-business-administration',
-'https://regent.ac.za/?s=fees',
-'https://regent.ac.za/programme/higher-certificate-in-marketing-management',
-'https://regent.ac.za/#top',
-'https://regent.ac.za/join-regent-connect-today',
-'https://regent.ac.za/programme/postgraduate-diploma-in-educational-management-and-leadership',
-'https://regent.ac.za/programme/higher-certificate-in-business-management#request-form',
-'https://regent.ac.za/programme/higher-certificate-in-islamic-finance-banking-and-law',
-'https://regent.ac.za/about-us/accreditation',
-'https://regent.ac.za/programme/higher-certificate-in-management-for-estate-agents/',
-'https://regent.ac.za/programmes/undergraduate/',
-'https://regent.ac.za/programme/bachelor-of-business-administration-regent/',
-'https://regent.ac.za/programme/bachelor-of-commerce-honours/',
-'https://regent.ac.za/programme/higher-certificate-in-accounting/',
-'https://regent.ac.za/programme/bachelor-of-commerce/',
-'https://regent.ac.za/programme/higher-certificate-in-retail-management/',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-accounting/',
-'https://regent.ac.za/programme/postgraduate-diploma-in-project-management/',
-'https://regent.ac.za/apply-online/',
-'https://regent.ac.za/programme/bachelor-of-commerce-in-supply-chain-management-regent/',
-'https://regent.ac.za/programme/master-of-business-administration/',
-'https://regent.ac.za/programme/higher-certificate-in-business-management/',
-'https://regent.ac.za/programme/postgraduate-diploma-in-accounting/',
-'https://regent.ac.za/category/degrees/',
-'https://regent.ac.za/programme/higher-certificate-in-supply-chain-management/',
-'https://regent.ac.za/programmes/postgraduate/'
-dflive2=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg.loc[OrganicSeg['UTM Source'].isin(source)]]
-OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg.loc[OrganicSeg['UTM Source'].isin(source)]].index,inplace=True)
-#dflivefinal= dfliveappend.append(dflive2, ignore_index = True)
-CRMOrg = OrganicSeg.copy() 
-#pivotlive= pd.pivot_table(dflivefinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-#sortedpivotlive =  pivotlive.loc[pivotlive.index.isin(name_order)]
-#pivotCRM= pd.pivot_table(CRMOrg,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-#sortedpivotCRM =  pivotCRM.loc[pivotCRM.index.isin(name_order)]
+dflive=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False)]
+UTMSource= 'google'
+UTMgmb='gmb-jhb|gmb-cpt'
+dflive.drop(dflive[dflive['UTM Source'].str.contains(UTMSource,case=False,na=False)].index,inplace=True)
+dflive.drop(dflive[dflive['UTM Campaign'].str.contains(UTMgmb,case=False,na=False)].index,inplace=True)
+OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False)].index,inplace=True)
+OrganicSeg.drop(OrganicSeg[OrganicSeg['UTM Source'].str.contains(UTMSource,case=False,na=False)].index,inplace=True)
+OrganicSeg.drop(OrganicSeg[OrganicSeg['UTM Campaign'].str.contains(UTMgmb,case=False,na=False)].index,inplace=True)
+CRMOrg = OrganicSeg.copy()
+pivotlive= pd.pivot_table(dflive,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+sortedpivotlive =pivotlive.loc[pivotlive.index.isin(name_order)]
+pivotCRM= pd.pivot_table(CRMOrg,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+sortedpivotCRM = pivotCRM.loc[pivotCRM.index.isin(name_order)]
 
 
 #PROCESS18
 PaidSeg= pd.DataFrame(OverallPaid)
-
-Jivo = 'campaign=CAO_web-banner_2022|source=CAO_website|medium=banner',
-'campaign=Lookalike_HCs|source=Facebook|medium=ad_post',
-'campaign=Lookalike_Apps_HCs|source=Facebook|medium=ad_post',
-'campaign=USSD_RDCampaign|source=mobile|medium=ussd',
-utmpaidsource = 'campaign=Canned_enquiry-new|source=CRM|medium=email'
-utmCampaign= 'Flume_B2B_Search_Reskill_and_Upskill'
-utmMedium = 'paid'
-dfJivo= PaidSeg[PaidSeg.loc[PaidSeg['UTM Source'].isin(Jivo)] & PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(validation, case= False,na=False) ]
-PaidSeg.drop(PaidSeg[PaidSeg.loc[PaidSeg['UTM Source'].isin(Jivo)] & PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(validation, case= False,na=False) ].index,inplace=True)
-dfJivo2=PaidSeg[PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(utmCampaign, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(utmMedium, case= False,na=False) & PaidSeg['UTM Source'].str.contains(utmpaidsource, case= False,na=False)]
-PaidSeg.drop(PaidSeg[PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(utmCampaign, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(utmMedium, case= False,na=False) & PaidSeg['UTM Source'].str.contains(utmpaidsource, case= False,na=False)].index,inplace=True)
-dfJivofinal= dfJivo.append(dfJivo2, ignore_index = True)
+Jivo='https://regent.ac.za/programme/bachelor-of-commerce?utm_source=flume&utm_medium=search&utm_campaign=Bcom&utm_term=cpc&utm_source=Flume&ccampaignid=18803823970&adgroupid=142661543229&gclid=CjwKCAiA7IGcBhA8EiwAFfUDsYApA7tvnhaJ_kALbAMw2a10T5Po9G4DlxU24yWWYFT|https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=flume&utm_medium=search&utm_campaign=PGD_accounting&utm_term=cpc&utm_source=Flume&ccampaignid=18805705852&adgroupid=151603625988&gclid=Cj0KCQiAg_KbBhDLARIsANx7wAyqyJJoz8dPL_-7yyg |https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=flume&utm_medium=search&utm_campaign=PGD_accounting&utm_term=cpc&utm_source=Flume&ccampaignid=18805705852&adgroupid=151603625988&gclid=Cj0KCQiAg_KbBhDLARIsANx7wAyqyJJoz8dPL_-7yyg|https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=flume&utm_medium=search&utm_campaign=PGD_accounting&utm_term=cpc&utm_source=Flume&ccampaignid=18884238370&adgroupid=147049376087&gclid=Cj0KCQiAg_KbBhDLARIsANx7wAxGREuPL1R2mnN1vU3 |https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=flume&utm_medium=search&utm_campaign=PGD_accounting&utm_term=cpc&utm_source=Flume&ccampaignid=18884238370&adgroupid=147049376087&gclid=Cj0KCQiAg_KbBhDLARIsANx7wAxGREuPL1R2mnN1vU3|https://regent.ac.za/programme/postgraduate-diploma-in-digital-marketing?utm_source=flume&utm_medium=search&utm_campaign=PGD_marketing&utm_term=cpc&utm_source=Flume&ccampaignid=18884238370&adgroupid=147049375807&gclid=CjwKCAiA68ebBhB-EiwALVC-Nq2vhyHddvrlS |https://regent.ac.za/programme/postgraduate-diploma-in-digital-marketing?utm_source=flume&utm_medium=search&utm_campaign=PGD_marketing&utm_term=cpc&utm_source=Flume&ccampaignid=18884238370&adgroupid=147049375807&gclid=CjwKCAiA68ebBhB-EiwALVC-Nq2vhyHddvrlS|https://regent.ac.za/programme/bachelor-of-public-administration?utm_source=flume&utm_medium=search&utm_campaign=Bcom_public_administration&utm_term=cpc&utm_source=Flume&ccampaignid=18806391308&adgroupid=144781502364&gclid=Cj0KCQiAmaibBhCAARIsAKUlaKTqTSCz |https://regent.ac.za/programme/bachelor-of-public-administration?utm_source=flume&utm_medium=search&utm_campaign=Bcom_public_administration&utm_term=cpc&utm_source=Flume&ccampaignid=18806391308&adgroupid=144781502364&gclid=Cj0KCQiAmaibBhCAARIsAKUlaKTqTSCz|https://regent.ac.za/programme/bachelor-of-commerce-honours?utm_source=flume&utm_medium=search&utm_campaign=Bcom_honours&utm_term=cpc&utm_source=Flume&ccampaignid=18806391308&adgroupid=141791498286&gclid=Cj0KCQiAmaibBhCAARIsAKUlaKQDGRcTBdqz8Co962JCUH1KBBx |https://regent.ac.za/programme/bachelor-of-commerce-honours?utm_source=flume&utm_medium=search&utm_campaign=Bcom_honours&utm_term=cpc&utm_source=Flume&ccampaignid=18806391308&adgroupid=141791498286&gclid=Cj0KCQiAmaibBhCAARIsAKUlaKQDGRcTBdqz8Co962JCUH1KBBx|https://regent.ac.za/programme/advanced-diploma-in-management?utm_source=Flume&utm_medium=SearchAd&utm_campaign=advdipman&utm_source=Flume&ccampaignid=17010923483&adgroupid=133157750382&gclid=CjwKCAjw8JKbBhBYEiwAs3sxN8oNu13OUkh3u-CI0_aYd6uYqVzHHb2Oh2quH9I |https://regent.ac.za/programme/advanced-diploma-in-management?utm_source=Flume&utm_medium=SearchAd&utm_campaign=advdipman&utm_source=Flume&ccampaignid=17010923483&adgroupid=133157750382&gclid=CjwKCAjw8JKbBhBYEiwAs3sxN8oNu13OUkh3u-CI0_aYd6uYqVzHHb2Oh2quH9I|https://regent.ac.za/apply-online?utm_source=Flume&utm_medium=AdwordsExtensions&utm_source=Flume&ccampaignid=17213472901&adgroupid=137276991540&gclid=CjwKCAjw8JKbBhBYEiwAs3sxN0lTZR0I7uRfGkaIH5waUHvnyO2GgEAIzhbhMaSduoEl7R9BodS2_BoCln0QAvD_BwE |https://regent.ac.za/apply-online?utm_source=Flume&utm_medium=AdwordsExtensions&utm_source=Flume&ccampaignid=17213472901&adgroupid=137276991540&gclid=CjwKCAjw8JKbBhBYEiwAs3sxN0lTZR0I7uRfGkaIH5waUHvnyO2GgEAIzhbhMaSduoEl7R9BodS2_BoCln0QAvD_BwE|https://regent.ac.za/programme/master-of-business-administration?utm_source=Flume&utm_medium=SearchAd&utm_campaign=mba&utm_source=Flume&ccampaignid=17754265402&adgroupid=138193572679&gclid=CjwKCAjwzY2bBhB6EiwAPpUpZiEHiE2oaFg9Gt4TSkMch7WLqauPRZTqXN0XGOGbv_ |https://regent.ac.za/programme/master-of-business-administration?utm_source=Flume&utm_medium=SearchAd&utm_campaign=mba&utm_source=Flume&ccampaignid=17754265402&adgroupid=138193572679&gclid=CjwKCAjwzY2bBhB6EiwAPpUpZiEHiE2oaFg9Gt4TSkMch7WLqauPRZTqXN0XGOGbv_|https://regent.ac.za/programme/bachelor-of-commerce-in-law?utm_source=Flume&utm_medium=SearchAd&utm_campaign=bcoml&utm_source=Flume&ccampaignid=17010923477&adgroupid=133157749582&gclid=Cj0KCQjwqoibBhDUARIsAH2OpWje87-SS_4k5mDztELnjcUnO6EN84Zv1-z4ir77khppMw |https://regent.ac.za/programme/bachelor-of-commerce-in-law?utm_source=Flume&utm_medium=SearchAd&utm_campaign=bcoml&utm_source=Flume&ccampaignid=17010923477&adgroupid=133157749582&gclid=Cj0KCQjwqoibBhDUARIsAH2OpWje87-SS_4k5mDztELnjcUnO6EN84Zv1-z4ir77khppMw|https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=Flume&utm_medium=Display&utm_campaign=pgdacc&utm_source=Flume&ccampaignid=17620858049&adgroupid=139885432202&gclid=CjwKCAjwh4ObBhAzEiwAHzZYUwdhuCk9aO0RKa-kaq_9XSheRj0dFZk4Ctty-o8 |https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=Flume&utm_medium=Display&utm_campaign=pgdacc&utm_source=Flume&ccampaignid=17620858049&adgroupid=139885432202&gclid=CjwKCAjwh4ObBhAzEiwAHzZYUwdhuCk9aO0RKa-kaq_9XSheRj0dFZk4Ctty-o8|https://regent.ac.za/programme/advanced-diploma-in-management?utm_source=Flume&utm_medium=SearchAd&utm_campaign=advdipman&utm_source=Flume&ccampaignid=17010923483&adgroupid=133157750382&gclid=CjwKCAjwh4ObBhAzEiwAHzZYU94IL2XSYxCtf08Ai7BYYqd6hO4_inNi1e2SRO_ |https://regent.ac.za/programme/advanced-diploma-in-management?utm_source=Flume&utm_medium=SearchAd&utm_campaign=advdipman&utm_source=Flume&ccampaignid=17010923483&adgroupid=133157750382&gclid=CjwKCAjwh4ObBhAzEiwAHzZYU94IL2XSYxCtf08Ai7BYYqd6hO4_inNi1e2SRO_|campaign=mba|source=Flume|medium=SearchAd |campaign=mba|source=Flume|medium=SearchAd|campaign=Flume_SOV_Display_Future_Focused|source=Flume|medium=Paid |campaign=Flume_SOV_Display_Future_Focused|source=Flume|medium=Paid|https://regent.ac.za/programme/advanced-diploma-in-management?utm_source=Flume&utm_medium=SearchAd&utm_campaign=advdipman&utm_source=Flume&ccampaignid=17010923483&adgroupid=133157750382&gclid=CjwKCAjw2OiaBhBSEiwAh2ZSPzJ2Gmmv4oJ7RDDADZq7-_7APpiU209i0ouwWxo |https://regent.ac.za/programme/advanced-diploma-in-management?utm_source=Flume&utm_medium=SearchAd&utm_campaign=advdipman&utm_source=Flume&ccampaignid=17010923483&adgroupid=133157750382&gclid=CjwKCAjw2OiaBhBSEiwAh2ZSPzJ2Gmmv4oJ7RDDADZq7-_7APpiU209i0ouwWxo|campaign=Flume_SOV_Registration|source=Flume|medium=Paid |campaign=Flume_SOV_Registration|source=Flume|medium=Paid|https://regent.ac.za/programme/master-of-business-administration?utm_source=Flume&utm_medium=SearchAd&utm_campaign=mba&utm_source=Flume&ccampaignid=17754265402&adgroupid=138193572679&gclid=EAIaIQobChMIhNXNx6n9-gIV18PVCh3MoQemEAAYAiAAEgImHvD_BwE |https://regent.ac.za/programme/master-of-business-administration?utm_source=Flume&utm_medium=SearchAd&utm_campaign=mba&utm_source=Flume&ccampaignid=17754265402&adgroupid=138193572679&gclid=EAIaIQobChMIhNXNx6n9-gIV18PVCh3MoQemEAAYAiAAEgImHvD_BwE|source=Flume|medium=AdwordsExtensions |source=Flume|medium=AdwordsExtensions|https://regent.ac.za/apply-online?utm_source=Flume&utm_medium=AdwordsExtensions&utm_source=Flume&ccampaignid=17569047754&adgroupid=138879993835&gclid=EAIaIQobChMI09-ot-P4-gIVDbbtCh0XrwCjEAAYASABEgKfAfD_BwE |https://regent.ac.za/apply-online?utm_source=Flume&utm_medium=AdwordsExtensions&utm_source=Flume&ccampaignid=17569047754&adgroupid=138879993835&gclid=EAIaIQobChMI09-ot-P4-gIVDbbtCh0XrwCjEAAYASABEgKfAfD_BwE|https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=Flume&utm_medium=SearchAd&utm_campaign=pgdacc&utm_source=Flume&ccampaignid=17213472901&adgroupid=137276991540&gclid=EAIaIQobChMIx6zLp-Lu-gIVETKRCh3NewwQEAAYASAAEgKEPvD_BwE |https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=Flume&utm_medium=SearchAd&utm_campaign=pgdacc&utm_source=Flume&ccampaignid=17213472901&adgroupid=137276991540&gclid=EAIaIQobChMIx6zLp-Lu-gIVETKRCh3NewwQEAAYASAAEgKEPvD_BwE|https://regent.ac.za/programme/bachelor-of-commerce?utm_source=Flume&utm_medium=SearchAd&utm_campaign=bcom&utm_source=Flume&ccampaignid=17569047754&adgroupid=138879993835&gclid=EAIaIQobChMI7dr8p77u-gIVDAeLCh1T2wK7EAMYAiAAEgLHOfD_BwE |https://regent.ac.za/programme/bachelor-of-commerce?utm_source=Flume&utm_medium=SearchAd&utm_campaign=bcom&utm_source=Flume&ccampaignid=17569047754&adgroupid=138879993835&gclid=EAIaIQobChMI7dr8p77u-gIVDAeLCh1T2wK7EAMYAiAAEgLHOfD_BwE|https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=facebook&utm_medium=paid&utm_campaign=Flume_SOV_PGD_Accounting&fbclid=PAAabX6Hc6P5FOiqhK8UISXt8Dkk1eOC8Lw456cSa6s5mYAKGBhtgM5tJNjMM&external_browser_redirect=true |https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=facebook&utm_medium=paid&utm_campaign=Flume_SOV_PGD_Accounting&fbclid=PAAabX6Hc6P5FOiqhK8UISXt8Dkk1eOC8Lw456cSa6s5mYAKGBhtgM5tJNjMM&external_browser_redirect=true|campaign=pgdscm|source=Flume|medium=SearchAd |campaign=pgdscm|source=Flume|medium=SearchAd|campaign=pgdman|source=Flume|medium=SearchAd |campaign=pgdman|source=Flume|medium=SearchAd|https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=Flume&utm_medium=SearchAd&utm_campaign=pgdacc&utm_source=Flume&ccampaignid=17213472901&adgroupid=137276991540&gclid=EAIaIQobChMI8Me7_Pbo-gIVkmDmCh0LkAdOEAAYASAAEgJs8PD_BwE |https://regent.ac.za/programme/postgraduate-diploma-in-accounting?utm_source=Flume&utm_medium=SearchAd&utm_campaign=pgdacc&utm_source=Flume&ccampaignid=17213472901&adgroupid=137276991540&gclid=EAIaIQobChMI8Me7_Pbo-gIVkmDmCh0LkAdOEAAYASAAEgJs8PD_BwE|campaign=(organic)|source=Bing|medium=search |campaign=(organic)|source=Bing|medium=search|campaign=(organic)|source=Google|medium=search |campaign=(organic)|source=Google|medium=search|campaign=Flume_B2B_Supply_chain_management|source=google|medium=paid |campaign=Flume_B2B_Supply_chain_management|source=google|medium=paid|campaign=Flume_B2B_Search_Corporate_and_Workforce_Solutions|source=Flume|medium=paid |campaign=Flume_B2B_Search_Corporate_and_Workforce_Solutions|source=Flume|medium=paid|https://regent.ac.za/corporate-workforce-solutions/?utm_source=google&utm_medium=paid&utm_campaign=Flume_B2B_Search_Reskill_and_Upskill&utm_source=Flume&ccampaignid=18337150781&adgroupid=142669694075&gclid=EAIaIQobChMI1-y01qna-gIVAWHmCh3jmwegEAAYAiAAEgKtH |https://regent.ac.za/corporate-workforce-solutions/?utm_source=google&utm_medium=paid&utm_campaign=Flume_B2B_Search_Reskill_and_Upskill&utm_source=Flume&ccampaignid=18337150781&adgroupid=142669694075&gclid=EAIaIQobChMI1-y01qna-gIVAWHmCh3jmwegEAAYAiAAEgKtH|campaign=Flume_B2B_Search_Reskill_and_Upskill|source=google|medium=paid |campaign=Flume_B2B_Search_Reskill_and_Upskill|source=google|medium=paid|https://regent.ac.za/corporate-workforce-solutions/?utm_source=google&utm_medium=paid&utm_campaign=Flume_B2B_Search_Reskill_and_Upskill&utm_source=Flume&ccampaignid=18337150781&adgroupid=142669694075&gclid=Cj0KCQjw1vSZBhDuARIsAKZlijTtbMrGf-UAjLUcZ0eOknuFf |https://regent.ac.za/corporate-workforce-solutions/?utm_source=google&utm_medium=paid&utm_campaign=Flume_B2B_Search_Reskill_and_Upskill&utm_source=Flume&ccampaignid=18337150781&adgroupid=142669694075&gclid=Cj0KCQjw1vSZBhDuARIsAKZlijTtbMrGf-UAjLUcZ0eOknuFf|https://regent.ac.za/proudly-a-b-bbee-level-1-contributor/?utm_source=google&utm_medium=Paid&utm_campaign=Flume_B2B_Search_Reskill_and_Upskill&utm_source=Flume&ccampaignid=18342230558&adgroupid=139146749657&gclid=CjwKCAjwvsqZBhAlEiwAqAHElb83MUlbCxtpB3PtHq |https://regent.ac.za/proudly-a-b-bbee-level-1-contributor/?utm_source=google&utm_medium=Paid&utm_campaign=Flume_B2B_Search_Reskill_and_Upskill&utm_source=Flume&ccampaignid=18342230558&adgroupid=139146749657&gclid=CjwKCAjwvsqZBhAlEiwAqAHElb83MUlbCxtpB3PtHq'
+dfJivo= PaidSeg[PaidSeg['UTM Source'].str.contains(Jivo,case=False,na=False)]
+PaidSeg.drop(PaidSeg[PaidSeg['UTM Source'].str.contains(Jivo,case=False,na=False)].index,inplace=True)
 CRMPaid=PaidSeg.copy()
-#pivotJivo= pd.pivot_table(dfJivo,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-#sortedpivotJivo = pivotJivo.loc[pivotJivo.index.isin(name_order)]
+pivotJivo= pd.pivot_table(dfJivo,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+sortedpivotJivo =  pivotJivo.loc[pivotJivo.index.isin(name_order)]
 
 
 #Process19
-#pivotCRMPaid= pd.pivot_table(CRMPaid,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-#sortedpivotCRMPaid =  pivotCRMPaid.loc[pivotCRMPaid.index.isin(name_order)]
+pivotCRMPaid= pd.pivot_table(CRMPaid,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+sortedpivotCRMPaid =  pivotCRMPaid.loc[pivotCRMPaid.index.isin(name_order)]
 
 
 
@@ -647,15 +518,16 @@ with pd.ExcelWriter(buffer,engine='openpyxl') as writer:
    sortedpivotwalk.to_excel(writer, sheet_name='Pivot Walk-In',index = True,startrow=1,startcol=1)
    dfCall.to_excel(writer, sheet_name='Calls',index =False)
    sortedpivotcall.to_excel(writer, sheet_name='Pivot Calls',index = True,startrow=1,startcol=1)
-   #dflivefinal.to_excel(writer, sheet_name='Jivo Org',index =False)
-  # sortedpivotlive.to_excel(writer, sheet_name='Pivot Jivo Org',index = True,startrow=1,startcol=1)
-   #CRMOrg.to_excel(writer, sheet_name='CRM Org',index =False)
-   #sortedpivotCRM.to_excel(writer, sheet_name='Pivot CRM Org',index = True,startrow=1,startcol=1)
-   #OverallPaid.to_excel(writer, sheet_name='Overall Paid',index =False)
-   #dfJivofinal.to_excel(writer, sheet_name=' Paid Jivo',index =False)
-   #sortedpivotJivo.to_excel(writer, sheet_name='Pivot Paid Jivo',index = True,startrow=1,startcol=1)
-   #CRMPaid.to_excel(writer, sheet_name=' CRM Paid',index =False)
-   #sortedpivotCRMPaid.to_excel(writer, sheet_name='Pivot CRM Paid ',index = True,startrow=1,startcol=1)
+  dflive.to_excel(writer, sheet_name='Jivo Org',index =False)
+   sortedpivotlive.to_excel(writer, sheet_name='Pivot Jivo Org',index = True,startrow=1,startcol=1)
+   CRMOrg.to_excel(writer, sheet_name='CRM Org',index =False)
+   sortedpivotCRM.to_excel(writer, sheet_name='Pivot CRM Org',index = True,startrow=1,startcol=1)
+   OverallPaid.to_excel(writer, sheet_name='Overall Paid',index =False)
+   dfJivo.to_excel(writer, sheet_name=' Paid Jivo',index =False)
+   sortedpivotJivo.to_excel(writer, sheet_name='Pivot Paid Jivo',index = True,startrow=1,startcol=1)
+   CRMPaid.to_excel(writer, sheet_name=' CRM Paid',index =False)
+   sortedpivotCRMPaid.to_excel(writer, sheet_name='Pivot CRM Paid ',index = True,startrow=1,startcol=1)
+   
    
 
 
