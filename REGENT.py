@@ -401,10 +401,26 @@ utmpaidsource = 'campaign=Canned_enquiry-new|source=CRM|medium=email'
 utmCampaign= 'Flume_B2B_Search_Reskill_and_Upskill'
 utmMedium = 'paid'
 dfJivo= PaidSeg[PaidSeg.loc[PaidSeg['UTM Source'].isin(Jivo)] & PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(validation, case= False,na=False) ]
-PaidSeg.drop(PaidSeg[PaidSeg.loc[PaidSeg['UTM Source'].isin(Jivo)] & PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(validation, case= False,na=False) ].index,inplace=True)
-dfJivo2=PaidSeg[PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(utmCampaign, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(utmMedium, case= False,na=False) & PaidSeg['UTM Source'].str.contains(utmpaidsource, case= False,na=False)]
-PaidSeg.drop(PaidSeg[PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(utmCampaign, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(utmMedium, case= False,na=False) & PaidSeg['UTM Source'].str.contains(utmpaidsource, case= False,na=False)].index,inplace=True)
-dfJivofinal= dfJivo.append(dfJivo2, ignore_index = True)
+
+# Check if dfJivo is empty before concatenating
+if not dfJivo.empty:
+    PaidSeg.drop(dfJivo.index, inplace=True)
+    dfJivo2 = PaidSeg[(PaidSeg['Method of contact'].str.contains(Live, case=False, na=False)) &
+                      (PaidSeg['UTM Campaign'].str.contains(utmCampaign, case=False, na=False)) &
+                      (PaidSeg['UTM Medium'].str.contains(utmMedium, case=False, na=False)) &
+                      (PaidSeg['UTM Source'].str.contains(utmpaidsource, case=False, na=False))]
+
+    # Check if dfJivo2 is empty before concatenating
+    if not dfJivo2.empty:
+        PaidSeg.drop(dfJivo2.index, inplace=True)
+        dfJivofinal = dfJivo.append(dfJivo2, ignore_index=True)
+    else:
+        dfJivofinal = dfJivo
+else:
+    dfJivofinal = PaidSeg[(PaidSeg['Method of contact'].str.contains(Live, case=False, na=False)) &
+                          (PaidSeg['UTM Campaign'].str.contains(utmCampaign, case=False, na=False)) &
+                          (PaidSeg['UTM Medium'].str.contains(utmMedium, case=False, na=False)) &
+                          (PaidSeg['UTM Source'].str.contains(utmpaidsource, case=False, na=False))]
 CRMPaid=PaidSeg.copy()
 pivotJivo= pd.pivot_table(dfJivofinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
 sortedpivotJivo =  pivotJivo.loc[pivotJivo.index.isin(name_order)]
