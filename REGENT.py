@@ -302,7 +302,11 @@ OrganicLeads1 = df[
     df['UTM Medium'].str.contains(validation, case=False, na=False) &
     df['UTM Source'].isin(validation1)
 ]
-unfiltereddf1 = df[~ df.loc[df['UTM Source'].isin(validation1)]]
+unfiltereddf1 = df[~
+    df['UTM Campaign'].str.contains(validation, case=False, na=False) &
+    df['UTM Medium'].str.contains(validation, case=False, na=False) &
+    df['UTM Source'].isin(validation1)
+]
 df.drop(df[df['UTM Campaign'].str.contains(validation, case= False,na=False) & df['UTM Medium'].str.contains(validation, case= False,na=False) & df.loc[df['UTM Source'].isin(validation1)]].index,inplace=True)
 
 if not OrganicLeads1.empty:
