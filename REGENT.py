@@ -346,8 +346,8 @@ Live= 'Live Chat'
 validation='(blank)'
 UTMSource= 'campaign=gmb-jhb|source=google|medium=organic|content=website-link', 'campaign=(organic)|source=Google|medium=search', 'campaign=(direct)|source=(direct)', 'campaign=Canned_incomplete|source=CRM|medium=email', 'campaign=gmb-jhb|source=google|medium=organic|content=', 'campaign=Canned_enquiry-new|source=CRM|medium=email', 'campaign=(organic)|source=Bing|medium=search', 'campaign=(referral)|source=www.icancpd.net|medium=referral|content=/', 'campaign=gmb-ongwe|source=google|medium=organic|content=website-link', 'campaign=(organic)|source=Google|medium=searchcampaign=(organic)|source=Google|medium=search', 'campaign=SCM_articulation|source=Facebook|medium=post', 'campaign=HC_Jan23_Offer|source=Email|medium=email', 'campaign=Enquiries-canned|source=CRM|medium=email', 'campaign=gmb-cpt|source=google|medium=organic|content=website-link', 'campaign=(referral)|source=search-dra.dt.dbankcloud.com|medium=referral|content=/', 'campaign=(organic)|source=Facebook|medium=social', 'campaign=(referral)|source=southafricaportal.com|medium=referral|content=/', 'campaign=ITT_launch|source=Insta|medium=post', 'campaign=(referral)|source=en.m.wikipedia.org|medium=referral|content=/', 'campaign=Jivo_Remarketing|source=Email|medium=email', 'campaign=(referral)|source=m.trendads.co|medium=referral|content=/search/?search_term=regent business school&brand=uncategorized', 'campaign=(referral)|source=find-mba.com|medium=referral|content=/', 'campaign=gmb-pta|source=google|medium=organic|content=website-link', 'campaign=Post|source=Facebook|medium=Social'
 
-dflive= OrganicSeg[OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) &  OrganicSeg.loc[OrganicSeg['UTM Source'].isin(UTMSource)]]
-OrganicSeg.drop(OrganicSeg[OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg.loc[OrganicSeg['UTM Source'].isin(UTMSource)]].index,inplace=True)
+dflive= OrganicSeg[OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) &  OrganicSeg['UTM Source'].isin(UTMSource)]
+OrganicSeg.drop(OrganicSeg[OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) &  OrganicSeg['UTM Source'].isin(UTMSource)].index,inplace=True)
 dflive1=OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Source'].str.contains(validation, case= False,na=False)]
 OrganicSeg.drop(OrganicSeg[OrganicSeg['Method of contact'].str.contains(Live,case=False,na=False) & OrganicSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Medium'].str.contains(validation, case= False,na=False) & OrganicSeg['UTM Source'].str.contains(validation, case= False,na=False)].index,inplace=True)
 if not dflive.empty and not dflive1.empty:
@@ -364,7 +364,7 @@ dflive2 = OrganicSeg[
     OrganicSeg['Method of contact'].str.contains(Live, case=False, na=False) & 
     OrganicSeg['UTM Campaign'].str.contains(validation, case=False, na=False) & 
     OrganicSeg['UTM Medium'].str.contains(validation, case=False, na=False) & 
-    OrganicSeg.loc[OrganicSeg['UTM Source'].isin(source)]
+     OrganicSeg['UTM Source'].isin(source)]
 ]
 
 OrganicSeg.drop(
@@ -372,7 +372,7 @@ OrganicSeg.drop(
         OrganicSeg['Method of contact'].str.contains(Live, case=False, na=False) & 
         OrganicSeg['UTM Campaign'].str.contains(validation, case=False, na=False) & 
         OrganicSeg['UTM Medium'].str.contains(validation, case=False, na=False) & 
-        OrganicSeg.loc[OrganicSeg['UTM Source'].isin(source)]
+         OrganicSeg['UTM Source'].isin(source)]
     ].index,
     inplace=True
 )
