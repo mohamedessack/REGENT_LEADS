@@ -372,10 +372,11 @@ OrganicSeg.drop(
         OrganicSeg['Method of contact'].str.contains(Live, case=False, na=False) & 
         OrganicSeg['UTM Campaign'].str.contains(validation, case=False, na=False) & 
         OrganicSeg['UTM Medium'].str.contains(validation, case=False, na=False) & 
-         OrganicSeg['UTM Source'].isin(source)]
+        OrganicSeg['UTM Source'].isin(source)
     ].index,
     inplace=True
 )
+
 
 if not dflive2.empty:
     dflivefinal = dfliveappend.append(dflive2, ignore_index=True)
