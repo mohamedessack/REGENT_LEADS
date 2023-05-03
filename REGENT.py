@@ -364,7 +364,7 @@ dflive2 = OrganicSeg[
     OrganicSeg['Method of contact'].str.contains(Live, case=False, na=False) & 
     OrganicSeg['UTM Campaign'].str.contains(validation, case=False, na=False) & 
     OrganicSeg['UTM Medium'].str.contains(validation, case=False, na=False) & 
-     OrganicSeg['UTM Source'].isin(source)]
+     OrganicSeg['UTM Source'].isin(source)
 ]
 
 OrganicSeg.drop(
