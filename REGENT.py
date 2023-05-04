@@ -428,8 +428,9 @@ if  dfJivofinal.empty:
 
 
 #Process19
-pivotCRMPaid= pd.pivot_table(CRMPaid,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
-sortedpivotCRMPaid =  pivotCRMPaid.loc[pivotCRMPaid.index.isin(name_order)]
+if not dfJivofinal.empty:
+    pivotCRMPaid= pd.pivot_table(CRMPaid,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
+    sortedpivotCRMPaid =  pivotCRMPaid.loc[pivotCRMPaid.index.isin(name_order)]
 
 
 
