@@ -422,7 +422,7 @@ else:
                           (PaidSeg['UTM Medium'].str.contains(utmMedium, case=False, na=False)) &
                           (PaidSeg['UTM Source'].str.contains(utmpaidsource, case=False, na=False))]
 CRMPaid=PaidSeg.copy()
-if not dfJivofinal.empty:
+if  dfJivofinal.empty:
     pivotJivo= pd.pivot_table(dfJivofinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
     sortedpivotJivo =  pivotJivo.loc[pivotJivo.index.isin(name_order)]
 
