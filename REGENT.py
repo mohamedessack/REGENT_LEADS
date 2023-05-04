@@ -393,34 +393,31 @@ sortedpivotCRM = pivotCRM.loc[pivotCRM.index.isin(name_order)]
 #PROCESS18
 PaidSeg= pd.DataFrame(OverallPaid)
 
-Jivo = 'campaign=CAO_web-banner_2022|source=CAO_website|medium=banner',
-'campaign=Lookalike_HCs|source=Facebook|medium=ad_post',
-'campaign=Lookalike_Apps_HCs|source=Facebook|medium=ad_post',
-'campaign=USSD_RDCampaign|source=mobile|medium=ussd',
-utmpaidsource = 'campaign=Canned_enquiry-new|source=CRM|medium=email'
+
+#PROCESS18
+PaidSeg= pd.DataFrame(OverallPaid)
+
+
+Jivo = 'campaign=HC_Healthcare_services_management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=Flume_B2B_Supply_chain_management|source=google|medium=paid', 'source=Flume|medium=AdwordsExtensions', 'campaign=PGD_Digital_Marketing|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=PG_Video|source=Flume|medium=facebook|keyword=cpc|term=cpc|content=SOV', 'campaign=BCom_Gen|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=HC_Supply_Chain_Management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=Bcom_accounting|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=Bcom|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=Bcom_business_administration|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=Dont_Settle_For_Less|source=Flume|medium=TikTok|keyword=cpc|term=cpc|content=SOV', 'campaign=Registration|source=Flume|medium=display|keyword=cpc|term=cpc|content=SOV', 'campaign=BCom_Supply_chain_Management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=namibia_tvc|source=flume|medium=facebook|keyword=cpc|term=cpc', 'campaign=PGD_project_management|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=Bcom_supply_chain_managment|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=MBA_Healthcare_Management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=Bcom_law|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=PGD_accounting|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=advdipman|source=Flume|medium=SearchAd', 'campaign=PGD_management|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=HC_healthcare|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=MBA_business_administration|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=mba|source=Flume|medium=SearchAd', 'campaign=pgdscm|source=Flume|medium=SearchAd', 'campaign=Flume_SOV_Display_Future_Focused|source=Flume|medium=Paid', 'campaign=bcom|source=Flume|medium=SearchAd', 'campaign=bpa|source=Flume|medium=SearchAd', 'campaign=Flume_SOV_Registration|source=Flume|medium=Paid', 'campaign=PGD_Business_Management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=Flume_B2B_Search_Reskill_and_Upskill|source=google|medium=paid', 'campaign=Flume_B2B_Search_Corporate_and_Workforce_Solutions|source=google|medium=paid', 'campaign=PGD_Project_Management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=Bcom_public_administration|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=PGD_supply_chain_management|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=pgdman|source=Flume|medium=SearchAd', 'campaign=HC_Healthcare_Service_Management |source=flume|medium=facebook|keyword=cpc|term=cpc|content=Intake', 'campaign=Flume_B2B_Search_Reskill_and_Upskill|source=Flume|medium=paid', 'campaign=PGD_marketing|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=Flume_B2B_Search_BBBEE|source=google|medium=Paid', 'campaign=Namibia_Video|source=Flume|medium=facebook|keyword=cpc|term=cpc|content=SOV', 'campaign=Future_Focused|source=Flume|medium=display|keyword=cpc|term=cpc|content=SOV', 'campaign=Bcom_hr|source=flume|medium=search|keyword=cpc|term=cpc', 'campaign=BCom_Business_Administration|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=Upskilling|source=Flume|medium=display|keyword=cpc|term=cpc|content=SOV', 'campaign=HC_Business_Management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=BCom_Public_Administration|source=flume|medium=facebook|keyword=cpc|term=cpc|content=Intake', 'campaign=BCom_Law|source=flume|medium=facebook|keyword=cpc|term=cpc|content=Intake', 'campaign=Reskill_Upskill_Video|source=Flume|medium=facebook|keyword=cpc|term=cpc|content=SOV', 'campaign=Adv_Dip_Management|source=flume|medium=facebook|keyword=cpc|term=cpc|content=Intake', 'campaign=Adv_Dip_Management|source=flume|medium=Display|keyword=cpc|term=cpc|content=Intake', 'campaign=bcom|source=Flume|medium=Display', 'campaign=Flume_B2B_Search_Supply_Chain_Management|source=google|medium=Paid', 'campaign=pgdpm|source=Flume|medium=Display', 'campaign=bcomacc|source=Flume|medium=SearchAd', 'campaign=Flume_B2B_Search_Corporate_and_Workforce_Solutions|source=Flume|medium=paid', 'campaign=Flume_B2B_Search_BBBEE|source=Flume|medium=Paid'
 utmCampaign= 'Flume_B2B_Search_Reskill_and_Upskill'
 utmMedium = 'paid'
-dfJivo= PaidSeg[PaidSeg.loc[PaidSeg['UTM Source'].isin(Jivo)] & PaidSeg['Method of contact'].str.contains(Live,case=False,na=False) & PaidSeg['UTM Campaign'].str.contains(validation, case= False,na=False) & PaidSeg['UTM Medium'].str.contains(validation, case= False,na=False) ]
+utmpaidSource1 = 'campaign=CAO_web-banner_2022|source=CAO_website|medium=banner' , 'campaign=Lookalike_HCs|source=Facebook|medium=ad_post','campaign=Lookalike_Apps_HCs|source=Facebook|medium=ad_post''campaign=USSD_RDCampaign|source=mobile|medium=ussd'
 
-# Check if dfJivo is empty before concatenating
-if not dfJivo.empty:
-    PaidSeg.drop(dfJivo.index, inplace=True)
-    dfJivo2 = PaidSeg[(PaidSeg['Method of contact'].str.contains(Live, case=False, na=False)) &
-                      (PaidSeg['UTM Campaign'].str.contains(utmCampaign, case=False, na=False)) &
-                      (PaidSeg['UTM Medium'].str.contains(utmMedium, case=False, na=False)) &
-                      (PaidSeg['UTM Source'].str.contains(utmpaidsource, case=False, na=False))]
+dfJivo= PaidSeg[PaidSeg['UTM Source'].isin(Jivo) ]
 
+# Check if dfJivo is empty before concatenatin
+PaidSeg.drop(dfJivo.index, inplace=True)
+dfJivo2 = PaidSeg[PaidSeg['Method of contact'].str.contains(Live, case=False, na=False) &
+                      PaidSeg['UTM Campaign'].str.contains(utmCampaign, case=False, na=False) &
+                      PaidSeg['UTM Medium'].str.contains(utmMedium, case=False, na=False) &
+                      PaidSeg['UTM Source'].isin(utmpaidsource1)]
+                       
     # Check if dfJivo2 is empty before concatenating
-    if not dfJivo2.empty:
+if not dfJivo2.empty:
         PaidSeg.drop(dfJivo2.index, inplace=True)
         dfJivofinal = dfJivo.append(dfJivo2, ignore_index=True)
-    else:
-        dfJivofinal = dfJivo
 else:
-    dfJivofinal = PaidSeg[(PaidSeg['Method of contact'].str.contains(Live, case=False, na=False)) &
-                          (PaidSeg['UTM Campaign'].str.contains(utmCampaign, case=False, na=False)) &
-                          (PaidSeg['UTM Medium'].str.contains(utmMedium, case=False, na=False)) &
-                          (PaidSeg['UTM Source'].str.contains(utmpaidsource, case=False, na=False))]
+ dfJivofinal = dfJivo
 CRMPaid=PaidSeg.copy()
 if  dfJivofinal.empty:
     pivotJivo= pd.pivot_table(dfJivofinal,values='Lead Name',index='Program Version Name',columns='Campus',aggfunc = 'count',margins=True,margins_name='Grand Total',fill_value=' ')
