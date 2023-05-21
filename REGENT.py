@@ -302,7 +302,7 @@ validation1= 'campaign=gmb-jhb|source=google|medium=organic|content=website-link
 if add_filter:
     # Create a text input for the user to enter the filter text
     user_input = st.text_input("Filter Text for Organic Leads")
-    validation1.append(user_input)
+    validation1 = validation1 + [user_input]
 else:
     OrganicLeads1 = df[
     df['UTM Campaign'].str.contains(validation, case=False, na=False) &
