@@ -57,7 +57,7 @@ if uploaded_file is not None:
  # AgGrid(df)
 else:
  st.warning("You need to upload an Excel file")
-
+add_filter = st.checkbox("Add Filter for Organic Leads")
 with stats_container:
   df['E-mail']= df['E-mail'].astype(str).str.lower()	
   df.drop_duplicates(subset=['E-mail','Program Version Name'],inplace = True)
@@ -291,7 +291,7 @@ sortedpivot11cA = pivot11cA.sort_values(by=['Lead Name'],ascending= False)
 
 
 #Process12
-add_filter = st.checkbox("Add Filter for Organic Leads")
+
 
 
 validation='(blank)'
