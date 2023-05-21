@@ -304,17 +304,17 @@ if add_filter:
     user_input = st.text_input("Filter Text for Organic Leads")
     validation1.append(user_input)
 else:
-
-OrganicLeads1 = df[
+    OrganicLeads1 = df[
     df['UTM Campaign'].str.contains(validation, case=False, na=False) &
     df['UTM Medium'].str.contains(validation, case=False, na=False) &
     df['UTM Source'].isin(validation1)
-]
-unfiltereddf1 = df[~
+ ]
+ unfiltereddf1 = df[~
     df['UTM Campaign'].str.contains(validation, case=False, na=False) &
     df['UTM Medium'].str.contains(validation, case=False, na=False) &
     df['UTM Source'].isin(validation1)
-]
+ ]
+	
 df.drop(df[df['UTM Campaign'].str.contains(validation, case= False,na=False) & df['UTM Medium'].str.contains(validation, case= False,na=False) & df['UTM Source'].isin(validation1)].index,inplace=True)
 
 if not OrganicLeads1.empty:
