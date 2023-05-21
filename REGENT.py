@@ -54,7 +54,7 @@ with header_container:
 uploaded_file = st.file_uploader('Upload Excel file for processing', type=["xlsx"])
 if uploaded_file is not None:
   df= pd.read_excel(uploaded_file)
-  AgGrid(df)
+ # AgGrid(df)
 else:
  st.warning("You need to upload an Excel file")
 
