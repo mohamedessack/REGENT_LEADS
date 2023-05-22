@@ -305,8 +305,8 @@ if add_filter:
     user_input = user_input.lower()
     
 
-        if user_input:
-            validation1.append(user_input)
+    if user_input:
+      validation1.append(user_input)
 
 OrganicLeads1 = df[
     df['UTM Campaign'].str.contains(validation, case=False, na=False) &
