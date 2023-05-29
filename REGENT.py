@@ -304,9 +304,14 @@ if add_filter:
     user_input = st.text_input("Filter Text for Organic Leads")
     user_input = user_input.lower()
     
+try:
+       validation1 = type(validation1)(user_input)
+    except ValueError:
+        st.write("Error: Invalid input data type")
 
-    if user_input:
-      validation1.append(user_input)
+    # Append the user input to the existing variable
+    validation1.append(user_input)
+   
 
 OrganicLeads1 = df[
     df['UTM Campaign'].str.contains(validation, case=False, na=False) &
