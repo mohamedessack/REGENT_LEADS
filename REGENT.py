@@ -306,11 +306,12 @@ if add_filter:
     
 try:
        validation1 = type(validation1)(user_input)
-    except ValueError:
+       
+except ValueError:
         st.write("Error: Invalid input data type")
 
     # Append the user input to the existing variable
-    validation1.append(user_input)
+validation1.append(user_input)
    
 
 OrganicLeads1 = df[
