@@ -329,13 +329,13 @@ df.drop(df[df['UTM Campaign'].str.contains(validation, case= False,na=False) & d
 
 if not OrganicLeads1.empty:
     OrganicLeads = OrganicLeads.append(OrganicLeads1, ignore_index = True)
-if not unflitereddf.empty :
-    unflitereddf= unfiltereddf.append(unfiltereddf1, ignore_index = True)
+if not unfiltereddf.empty :
+    unfiltereddf= unfiltereddf.append(unfiltereddf1, ignore_index = True)
 	
 post='post|Banner|Email|Organic|Social'
 OrganicLeads2=df[ df['UTM Medium'].str.contains(post, case= False,na=False)]
 unfiltereddf2= df[~ df['UTM Medium'].str.contains(post, case= False,na=False)]
-if not unflitereddf.empty :
+if not unfiltereddf.empty :
     unfiltereddf= unfiltereddf.append(unfiltereddf2,ignore_index = True)
 df.drop(df[ df['UTM Medium'].str.contains(post, case= False,na=False)].index, inplace=True)
 
